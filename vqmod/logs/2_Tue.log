@@ -1,0 +1,14 @@
+---------- Date: 2017-09-05 09:12:44 ~ IP : fe80::d9fc:ba68:dcb8:5197 ----------
+REQUEST URI : /c2c/admin/index.php?route=setting/setting&token=ieb35Kbwix7fLds8HKmvIHCHd791X1g8
+MOD DETAILS:
+   modFile   : D:\xampp\htdocs\c2c\vqmod/xml/social.xml
+   id        : ecybertech v2.0.x
+   version   : 2.2.7
+   vqmver    : 2.6.1
+   author    : ecybertech
+
+File Name    : admin/language/en-gb/en-gb.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): $_['error_curl'] = 'CURL: Error Code(%s): %s';
+----------------------------------------------------------------------
+
+

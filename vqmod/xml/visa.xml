@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+
+	<id>ecybertech v2.0.x</id>
+	<version>2.2.7</version>
+	<vqmver>2.6.1</vqmver>
+	<author>ecybertech</author>
+    <file name="admin/controller/common/column_left.php" error="log">
+        <operation error="log">
+			<search position="before" ><![CDATA[ if ($catalog) {]]></search>
+			<add><![CDATA[
+            	 $visa = array();
+
+		
+        if ($this->user->hasPermission('access', 'catalog/visa')) {
+				$visa[] = array(
+					'name'	   => 'Visa List',
+					'href'     => $this->url->link('catalog/visa', 'token=' . $this->session->data['token']. '&filter_category=Visa%20Category&filter_category_id=81', true),
+					'children' => array()
+				);
+			}
+        
+        
+
+			if ($visa) {
+				$data['menus'][] = array(
+					'id'       => 'menu-news',
+					'icon'	   => 'fa-file-text-o',
+					'name'	   => 'Visa',
+					'href'     => '',
+					'children' => $visa
+				);
+			}
+            				
+			]]>
+			</add>
+		</operation>
+    </file>
+	
+	
+</modification>

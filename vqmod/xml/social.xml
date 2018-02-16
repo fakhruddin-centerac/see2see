@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+	<id>ecybertech v2.0.x</id>
+	<version>2.2.7</version>
+	<vqmver>2.6.1</vqmver>
+	<author>ecybertech</author>  
+     <file name="admin/language/en-gb/setting/setting.php" error="log">
+        <operation error="log">
+			<search position="after" ><![CDATA[$_['error_encryption']             = 'Encryption Key must be between 32 and 1024 characters!';]]></search>
+			<add><![CDATA[  
+             $_['entry_youtube']				    = 'Youtube URL :';
+             $_['entry_instagram']				= 'Instagram URL :';
+             $_['tab_social']				    = 'Social Links';
+             $_['entry_linkedin']				= 'Linked-in URL :';
+             $_['entry_twitter']				    = 'Twitter URL :';
+             $_['entry_facebook']				= 'Facebook URL :';  				
+			]]>
+			</add>
+		</operation>
+    </file> 
+    <file name="admin/controller/setting/setting.php" error="log">
+        <operation error="log">
+			<search position="after" ><![CDATA[$data['tab_server'] = $this->language->get('tab_server');]]></search>
+			<add><![CDATA[  
+             $data['tab_social'] = $this->language->get('tab_social');
+            $data['entry_linkedin'] = $this->language->get('entry_linkedin');
+			$data['entry_twitter'] = $this->language->get('entry_twitter');
+			$data['entry_facebook'] = $this->language->get('entry_facebook');
+            $data['entry_youtube'] = $this->language->get('entry_youtube'); 
+            $data['entry_instagram'] = $this->language->get('entry_instagram');     
+            
+            if (isset($this->request->post['config_social_linkedin'])) {
+				$data['config_social_linkedin'] = $this->request->post['config_social_linkedin'];
+			} else {
+				$data['config_social_linkedin'] = $this->config->get('config_social_linkedin');
+			}
+
+			if (isset($this->request->post['config_social_twitter'])) {
+				$data['config_social_twitter'] = $this->request->post['config_social_twitter'];
+			} else {
+				$data['config_social_twitter'] = $this->config->get('config_social_twitter');
+			}
+	
+			if (isset($this->request->post['config_social_facebook'])) {
+				$data['config_social_facebook'] = $this->request->post['config_social_facebook'];
+			} else {
+				$data['config_social_facebook'] = $this->config->get('config_social_facebook');
+			}  
+            	if (isset($this->request->post['config_social_youtube'])) {
+				$data['config_social_youtube'] = $this->request->post['config_social_youtube'];
+			} else {
+				$data['config_social_youtube'] = $this->config->get('config_social_youtube');
+			} 
+            	if (isset($this->request->post['config_social_instagram'])) {
+				$data['config_social_instagram'] = $this->request->post['config_social_instagram'];
+			} else {
+				$data['config_social_instagram'] = $this->config->get('config_social_instagram');
+			}     				
+			]]>
+			</add>
+		</operation>
+    </file>  
+     <file name="admin/view/template/setting/setting.tpl" error="log">
+        <operation error="log">
+			<search position="after" ><![CDATA[<li><a href="#tab-server" data-toggle="tab"><?php echo $tab_server; ?></a></li>]]></search>
+			<add><![CDATA[<li><a href="#tab-social" data-toggle="tab"><?php echo $tab_social; ?></a></li>]]>
+			</add>
+		</operation>
+        <operation error="log">
+			<search  position="before" offset="1"><![CDATA[</form>]]></search>
+			<add><![CDATA[<div class="tab-pane" id="tab-social">
+				<div class="form-group ">
+                  <label class="col-sm-2 control-label" for="input-meta-title"><?php echo $entry_facebook; ?></label>
+                  <div class="col-sm-10">
+                    <input type="text" name="config_social_facebook" value="<?php echo $config_social_facebook; ?>" placeholder="<?php echo $entry_facebook; ?>" id="input-meta-title" class="form-control" />                    
+                  </div>
+                </div>
+				<div class="form-group ">
+                  <label class="col-sm-2 control-label" for="input-meta-title"><?php echo $entry_twitter; ?></label>
+                  <div class="col-sm-10">
+                    <input type="text" name="config_social_twitter" value="<?php echo $config_social_twitter; ?>" placeholder="<?php echo $entry_twitter; ?>" id="input-meta-title" class="form-control" />                    
+                  </div>
+                </div>
+				<div class="form-group ">
+                  <label class="col-sm-2 control-label" for="input-meta-title"><?php echo $entry_linkedin; ?></label>
+                  <div class="col-sm-10">
+                    <input type="text" name="config_social_linkedin" value="<?php echo $config_social_linkedin; ?>" placeholder="<?php echo $entry_linkedin; ?>" id="input-meta-title" class="form-control" />                    
+                  </div>
+                </div>
+                <div class="form-group ">
+                  <label class="col-sm-2 control-label" for="input-meta-title"><?php echo $entry_youtube; ?></label>
+                  <div class="col-sm-10">
+                    <input type="text" name="config_social_youtube" value="<?php echo $config_social_youtube; ?>" placeholder="<?php echo $entry_youtube; ?>" id="input-meta-title" class="form-control" />                    
+                  </div>
+                </div>
+                <div class="form-group ">
+                  <label class="col-sm-2 control-label" for="input-meta-title"><?php echo $entry_instagram; ?></label>
+                  <div class="col-sm-10">
+                    <input type="text" name="config_social_instagram" value="<?php echo $config_social_instagram; ?>" placeholder="<?php echo $entry_instagram; ?>" id="input-meta-title" class="form-control" />                    
+                  </div>
+                </div>
+                
+                
+                
+                
+                
+                
+            </div>]]>
+			</add>
+		</operation>
+    </file>
+	
+	
+</modification>

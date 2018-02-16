@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+
+	<id>ecybertech v2.0.x</id>
+	<version>2.2.7</version>
+	<vqmver>2.6.1</vqmver>
+	<author>ecybertech</author>
+    <file name="admin/controller/common/column_left.php" error="log">
+        <operation error="log">
+			<search position="before" ><![CDATA[ if ($catalog) {]]></search>
+			<add><![CDATA[
+            	 $parks = array();
+
+		if ($this->user->hasPermission('access', 'catalog/parks')) {
+				$parks[] = array(
+					'name'	   => 'Parks List',
+					'href'     => $this->url->link('catalog/parks', 'token=' . $this->session->data['token'], true),
+					'children' => array()
+				);
+			}
+            
+            if ($this->user->hasPermission('access', 'catalog/parks_category')) {
+				$parks[] = array(
+					'name'	   => 'Parks Category',
+					'href'     => $this->url->link('catalog/parks_category', 'token=' . $this->session->data['token'], true),
+					'children' => array()
+				);
+			}
+
+			if ($parks) {
+				$data['menus'][] = array(
+					'id'       => 'menu-news',
+					'icon'	   => 'fa-file-text-o',
+					'name'	   => 'Parks',
+					'href'     => '',
+					'children' => $parks
+				);
+			}
+            				
+			]]>
+			</add>
+		</operation>
+    </file>
+	
+	
+</modification>

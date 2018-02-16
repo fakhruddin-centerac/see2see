@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+
+	<id>ecybertech v2.0.x</id>
+	<version>2.2.7</version>
+	<vqmver>2.6.1</vqmver>
+	<author>ecybertech</author>
+    <file name="admin/controller/common/column_left.php" error="log">
+        <operation error="log">
+			<search position="before" ><![CDATA[ if ($catalog) {]]></search>
+			<add><![CDATA[
+            	 $tours = array();
+
+		if ($this->user->hasPermission('access', 'catalog/tours')) {
+				$tours[] = array(
+					'name'	   => 'Tours List',
+					'href'     => $this->url->link('catalog/tours', 'token=' . $this->session->data['token'], true),
+					'children' => array()
+				);
+			}
+            if ($this->user->hasPermission('access', 'catalog/tours')) {
+				$tours[] = array(
+					'name'	   => 'Water Sports',
+					'href'     => $this->url->link('catalog/tours', 'token=' . $this->session->data['token']. '&filter_category=Water Sports&filter_category_id=82', true),
+					'children' => array()
+				);
+			}
+            if ($this->user->hasPermission('access', 'catalog/tours_category')) {
+				$tours[] = array(
+					'name'	   => 'Tours Category',
+					'href'     => $this->url->link('catalog/tours_category', 'token=' . $this->session->data['token'], true),
+					'children' => array()
+				);
+			}
+            
+            
+			if ($tours) {
+				$data['menus'][] = array(
+					'id'       => 'menu-news',
+					'icon'	   => 'fa-file-text-o',
+					'name'	   => 'Tours',
+					'href'     => '',
+					'children' => $tours
+				);
+			}
+            				
+			]]>
+			</add>
+		</operation>
+    </file>
+	
+	
+</modification>
